@@ -29,9 +29,7 @@ public class H11_Praktijkopdracht_2  extends Applet {
     class knopListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             y = 50;
-            if (tafel == tafel){
                 tafel++;
-            }
             repaint();
         }
     }
