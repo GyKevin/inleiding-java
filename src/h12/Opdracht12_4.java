@@ -7,35 +7,51 @@ import java.awt.event.ActionListener;
 
 
 public class Opdracht12_4 extends Applet {
+    int[] getallen = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+    boolean found;
+    boolean clicked;
     TextField tekstvak;
-    TextField[] tabel;
-    //Double getallen;
     Button knop;
-    Label label;
+    int index;
+
 
     public void init() {
-        setSize(850, 300);
         tekstvak = new TextField("", 5);
-        label = new Label("type een nummer in");
-        knop = new Button("Ok");
+        knop = new Button("OK");
         knop.addActionListener(new knopListener());
-        add (label);
-        add (tekstvak);
-        add (knop);
-        tabel= new TextField[20];
-        for (int i = 0; i < tabel.length; i++) {
-            tabel[i] = new TextField("");
-            add (tabel[i]);
+        found = false;
+        add(tekstvak);
+        add(knop);
+    }
+
+
+    public void paint(Graphics g) {
+        if (clicked) {
+            if (found) {
+                g.drawString("De waarde is gevonden op index " + index, 50, 80);
+            } else {
+                g.drawString("De waarde is niet gevonden", 50, 80);
+            }
         }
     }
 
-    public void paint(Graphics g) {
-        
-    }
 
     class knopListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
+            found = false;
+            int s = Integer.parseInt(tekstvak.getText());
+            clicked = true;
+            int i = 0;
+            while ((i<getallen.length)&&(found==false)) {
+                if (getallen[i]==s) {
+                    found=true;
+                } else {
+                    i=i+1;
+                    index = i;
+                }
 
+            }
+            repaint();
         }
     }
 }
